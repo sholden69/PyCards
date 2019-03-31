@@ -2,10 +2,21 @@
 # basic deck of cards and some playing around
 import CardClasses as cc
 import random
+import pygame
 
 def main():
+    pygame.init()
 
-    #make our deck
+    display_width = 800
+    display_height = 600
+
+    gameDisplay = pygame.display.set_mode((display_width, display_height))
+    pygame.display.set_caption('Simons Cards')
+
+    black = (0, 0, 0)
+    white = (255, 255, 255)
+
+        #make our deck
     deck=cc.buildDeck()
 
     #Shuffle the deck
@@ -36,10 +47,11 @@ def main():
     #print ('#cards: ',len(deck))
     print("Here are your cards:")
     for val,suit in hand:
+          cardImg = pygame.image.load("PNG-cards-1.3/"+cc.getFileName(val,suit))
           print('The %s of %s' %(val,suit))
           print('File:',cc.getFileName(val,suit))
 
     print(cc.scoreHand(hand,None))
-
+    pygame.time.wait(5000)
 #Run the main function
 main()
